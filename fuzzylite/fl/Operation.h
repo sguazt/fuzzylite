@@ -131,6 +131,7 @@ namespace fl {
         template <typename T>
         static std::string str(T x, int decimals = fuzzylite::decimals());
 
+
         template <typename T>
         static std::string join(const std::vector<T>& x, const std::string& separator);
 

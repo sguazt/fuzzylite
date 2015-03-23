@@ -27,6 +27,7 @@
 #include "fl/Headers.h"
 
 #include <algorithm>
+#include <cstddef>
 
 namespace fl {
 
@@ -53,15 +54,15 @@ namespace fl {
 
         cpp << "\n";
 
-        for (int i = 0; i < engine->numberOfInputVariables(); ++i) {
+        for (std::size_t i = 0; i < engine->numberOfInputVariables(); ++i) {
             cpp << toString(engine->getInputVariable(i), engine) << "\n";
         }
 
-        for (int i = 0; i < engine->numberOfOutputVariables(); ++i) {
+        for (std::size_t i = 0; i < engine->numberOfOutputVariables(); ++i) {
             cpp << toString(engine->getOutputVariable(i), engine) << "\n";
         }
 
-        for (int i = 0; i < engine->numberOfRuleBlocks(); ++i) {
+        for (std::size_t i = 0; i < engine->numberOfRuleBlocks(); ++i) {
             cpp << toString(engine->getRuleBlock(i), engine) << "\n";
         }
 
@@ -72,10 +73,10 @@ namespace fl {
         std::ostringstream ss;
         std::string name = "inputVariable";
         if (engine->numberOfInputVariables() > 1) {
-            int index = std::distance(engine->inputVariables().begin(),
+            std::ptrdiff_t index = std::distance(engine->inputVariables().begin(),
                     std::find(engine->inputVariables().begin(),
                     engine->inputVariables().end(), inputVariable));
-            name += Op::str<int>(index + 1);
+            name += Op::str<std::ptrdiff_t>(index + 1);
         }
         ss << fl("InputVariable* ") << name << " = new " << fl("InputVariable;\n");
         ss << name << "->setEnabled(" << (inputVariable->isEnabled() ? "true" : "false") << ");\n";
@@ -83,7 +84,7 @@ namespace fl {
         ss << name << "->setRange(" <<
                 toString(inputVariable->getMinimum()) << ", " <<
                 toString(inputVariable->getMaximum()) << ");\n";
-        for (int t = 0; t < inputVariable->numberOfTerms(); ++t) {
+        for (std::size_t t = 0; t < inputVariable->numberOfTerms(); ++t) {
             ss << name << "->addTerm(" << toString(inputVariable->getTerm(t)) << ");\n";
         }
         ss << "engine->addInputVariable(" << name << ");\n";
@@ -94,10 +95,10 @@ namespace fl {
         std::ostringstream ss;
         std::string name = "outputVariable";
         if (engine->numberOfOutputVariables() > 1) {
-            int index = std::distance(engine->outputVariables().begin(),
+            std::ptrdiff_t index = std::distance(engine->outputVariables().begin(),
                     std::find(engine->outputVariables().begin(),
                     engine->outputVariables().end(), outputVariable));
-            name += Op::str<int>(index + 1);
+            name += Op::str<std::ptrdiff_t>(index + 1);
         }
         ss << fl("OutputVariable* ") << name << " = new " << fl("OutputVariable;\n");
         ss << name << "->setEnabled(" << (outputVariable->isEnabled() ? "true" : "false") << ");\n";
@@ -115,7 +116,7 @@ namespace fl {
                 (outputVariable->isLockedPreviousOutputValue() ? "true" : "false") << ");\n";
         ss << name << "->setLockOutputValueInRange(" <<
                 (outputVariable->isLockedOutputValueInRange() ? "true" : "false") << ");\n";
-        for (int t = 0; t < outputVariable->numberOfTerms(); ++t) {
+        for (std::size_t t = 0; t < outputVariable->numberOfTerms(); ++t) {
             ss << name << "->addTerm(" << toString(outputVariable->getTerm(t)) << ");\n";
         }
         ss << "engine->addOutputVariable(" << name << ");\n";
@@ -126,10 +127,10 @@ namespace fl {
         std::ostringstream ss;
         std::string name = "ruleBlock";
         if (engine->numberOfRuleBlocks() > 1) {
-            int index = std::distance(engine->ruleBlocks().begin(),
+            std::ptrdiff_t index = std::distance(engine->ruleBlocks().begin(),
                     std::find(engine->ruleBlocks().begin(),
                     engine->ruleBlocks().end(), ruleBlock));
-            name += Op::str<int>(index + 1);
+            name += Op::str<std::ptrdiff_t>(index + 1);
         }
         ss << fl("RuleBlock* ") << name << " = new " << fl("RuleBlock;\n");
         ss << name << "->setEnabled(" << (ruleBlock->isEnabled() ? "true" : "false") << ");\n";
@@ -140,7 +141,7 @@ namespace fl {
                 << toString(ruleBlock->getDisjunction()) << ");\n";
         ss << name << "->setActivation("
                 << toString(ruleBlock->getActivation()) << ");\n";
-        for (int r = 0; r < ruleBlock->numberOfRules(); ++r) {
+        for (std::size_t r = 0; r < ruleBlock->numberOfRules(); ++r) {
             ss << name << "->addRule(fl::Rule::parse(\"" <<
                     ruleBlock->getRule(r)->getText() << "\", engine));\n";
         }

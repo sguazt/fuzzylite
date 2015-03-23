@@ -24,6 +24,8 @@
 
 #include "fl/term/PiShape.h"
 
+#include <cstddef>
+
 namespace fl {
 
     PiShape::PiShape(const std::string& name, scalar bottomLeft, scalar topLeft,

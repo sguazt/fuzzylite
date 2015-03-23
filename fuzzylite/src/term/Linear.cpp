@@ -28,6 +28,7 @@
 #include "fl/variable/InputVariable.h"
 
 #include <cstdarg>
+#include <cstddef>
 
 namespace fl {
 

@@ -24,6 +24,8 @@
 
 #include "fl/term/Triangle.h"
 
+#include <cstddef>
+
 namespace fl {
 
     Triangle::Triangle(const std::string& name, scalar vertexA, scalar vertexB, scalar vertexC, scalar height)

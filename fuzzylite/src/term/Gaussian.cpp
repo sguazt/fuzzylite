@@ -24,6 +24,8 @@
 
 #include "fl/term/Gaussian.h"
 
+#include <cstddef>
+
 namespace fl {
 
     Gaussian::Gaussian(const std::string& name,

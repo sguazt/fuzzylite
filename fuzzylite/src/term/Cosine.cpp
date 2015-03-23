@@ -24,6 +24,8 @@
 
 #include "fl/term/Cosine.h"
 
+#include <cstddef>
+
 namespace fl {
 
     Cosine::Cosine(const std::string& name, scalar center, scalar width, scalar height)

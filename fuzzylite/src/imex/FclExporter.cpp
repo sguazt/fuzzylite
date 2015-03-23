@@ -25,6 +25,7 @@
 
 #include "fl/Headers.h"
 
+#include <cstddef>
 #include <sstream>
 
 namespace fl {
@@ -52,18 +53,18 @@ namespace fl {
         fcl << "FUNCTION_BLOCK " << engine->getName() << "\n\n";
 
         fcl << "VAR_INPUT\n";
-        for (int i = 0; i < engine->numberOfInputVariables(); ++i) {
+        for (std::size_t i = 0; i < engine->numberOfInputVariables(); ++i) {
             fcl << _indent << Op::validName(engine->getInputVariable(i)->getName()) << ": REAL;\n";
         }
         fcl << "END_VAR\n\n";
 
         fcl << "VAR_OUTPUT\n";
-        for (int i = 0; i < engine->numberOfOutputVariables(); ++i) {
+        for (std::size_t i = 0; i < engine->numberOfOutputVariables(); ++i) {
             fcl << _indent << Op::validName(engine->getOutputVariable(i)->getName()) << ": REAL;\n";
         }
         fcl << "END_VAR\n\n";
 
-        for (int i = 0; i < engine->numberOfInputVariables(); ++i) {
+        for (std::size_t i = 0; i < engine->numberOfInputVariables(); ++i) {
             InputVariable* inputVariable = engine->getInputVariable(i);
             fcl << "FUZZIFY " << Op::validName(inputVariable->getName()) << "\n";
             if (not inputVariable->isEnabled()) {
@@ -74,7 +75,7 @@ namespace fl {
                     inputVariable->getMinimum(), inputVariable->getMaximum())
                     << ");\n";
 
-            for (int t = 0; t < inputVariable->numberOfTerms(); ++t) {
+            for (std::size_t t = 0; t < inputVariable->numberOfTerms(); ++t) {
                 Term* term = inputVariable->getTerm(t);
                 fcl << _indent << "TERM " << Op::validName(term->getName()) << " := " << toString(term)
                         << ";\n";
@@ -82,7 +83,7 @@ namespace fl {
             fcl << "END_FUZZIFY\n\n";
         }
 
-        for (int i = 0; i < engine->numberOfOutputVariables(); ++i) {
+        for (std::size_t i = 0; i < engine->numberOfOutputVariables(); ++i) {
             OutputVariable* outputVariable = engine->getOutputVariable(i);
             fcl << "DEFUZZIFY " << Op::validName(outputVariable->getName()) << "\n";
             if (not outputVariable->isEnabled()) {
@@ -93,7 +94,7 @@ namespace fl {
                     outputVariable->getMinimum(), outputVariable->getMaximum())
                     << ");\n";
 
-            for (int t = 0; t < outputVariable->numberOfTerms(); ++t) {
+            for (std::size_t t = 0; t < outputVariable->numberOfTerms(); ++t) {
                 Term* term = outputVariable->getTerm(t);
                 fcl << _indent << "TERM " << Op::validName(term->getName()) << " := " << toString(term)
                         << ";\n";
@@ -118,7 +119,7 @@ namespace fl {
             fcl << "\n";
         }
 
-        for (int i = 0; i < engine->numberOfRuleBlocks(); ++i) {
+        for (std::size_t i = 0; i < engine->numberOfRuleBlocks(); ++i) {
             RuleBlock* ruleblock = engine->getRuleBlock(i);
             fcl << "RULEBLOCK " << ruleblock->getName() << "\n";
             if (not ruleblock->isEnabled()) {
@@ -132,7 +133,7 @@ namespace fl {
             if (ruleblock->getActivation())
                 fcl << _indent << "ACT : " << toString(ruleblock->getActivation()) << ";\n";
 
-            for (int r = 0; r < ruleblock->numberOfRules(); ++r) {
+            for (std::size_t r = 0; r < ruleblock->numberOfRules(); ++r) {
                 fcl << _indent << "RULE " << (r + 1) << " : " <<
                         ruleblock->getRule(r)->getText() << "\n";
             }

@@ -26,6 +26,7 @@
 
 #include "fl/Headers.h"
 
+#include <cstddef>
 #include <queue>
 
 namespace fl {
@@ -60,7 +61,7 @@ namespace fl {
         std::queue<std::string> lineQueue;
 
         bool processPending = false;
-        int lineNumber = 0;
+        std::size_t lineNumber = 0;
         while (not lineQueue.empty() or std::getline(fclReader, line)) {
             if (not lineQueue.empty()) {
                 line = lineQueue.front();

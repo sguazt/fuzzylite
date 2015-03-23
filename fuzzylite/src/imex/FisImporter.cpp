@@ -26,6 +26,7 @@
 
 #include "fl/Headers.h"
 
+#include <cstddef>
 #include <sstream>
 #include <iostream>
 #include <cctype>
@@ -47,7 +48,7 @@ namespace fl {
 
         std::istringstream fisReader(fis);
         std::string line;
-        int lineNumber = 0;
+        std::size_t lineNumber = 0;
 
         std::vector<std::string> sections;
         while (std::getline(fisReader, line)) {
@@ -231,14 +232,14 @@ namespace fl {
             outputs.erase(outputs.begin() + outputs.size() - 1);
             std::string connector = fl::Op::trim(outputsAndRest.at(1));
 
-            if ((int) inputs.size() != engine->numberOfInputVariables()) {
+            if (inputs.size() != engine->numberOfInputVariables()) {
                 std::ostringstream ss;
                 ss << "[syntax error] expected <" << engine->numberOfInputVariables() << ">"
                         " input variables, but found <" << inputs.size() << ">"
                         " input variables in rule <" << line << ">";
                 throw fl::Exception(ss.str(), FL_AT);
             }
-            if ((int) outputs.size() != engine->numberOfOutputVariables()) {
+            if (outputs.size() != engine->numberOfOutputVariables()) {
                 std::ostringstream ss;
                 ss << "[syntax error] expected <" << engine->numberOfOutputVariables() << ">"
                         " output variables, but found <" << outputs.size() << ">"
@@ -314,7 +315,7 @@ namespace fl {
     std::string FisImporter::translateProposition(scalar code, Variable* variable) const {
         int intPart = (int) std::floor(std::fabs(code)) - 1;
         scalar fracPart = std::fmod(std::fabs(code), 1.0);
-        if (intPart >= variable->numberOfTerms()) {
+        if (intPart >= static_cast<int>(variable->numberOfTerms())) {
             std::ostringstream ex;
             ex << "[syntax error] the code <" << code << "> refers to a term "
                     "out of range from variable <" << variable->getName() << ">";

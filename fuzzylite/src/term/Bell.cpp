@@ -24,6 +24,8 @@
 
 #include "fl/term/Bell.h"
 
+#include <cstddef>
+
 namespace fl {
 
     Bell::Bell(const std::string& name, scalar center, scalar width, scalar slope, scalar height)

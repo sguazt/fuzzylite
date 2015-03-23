@@ -26,6 +26,8 @@
 
 #include "fl/Headers.h"
 
+#include <cstddef>
+
 namespace fl {
 
     FllExporter::FllExporter(const std::string& indent, const std::string& separator)
@@ -102,7 +104,7 @@ namespace fl {
         result.push_back(_indent + "enabled: " + (variable->isEnabled() ? "true" : "false"));
         result.push_back(_indent + "range: " + Op::join(2, " ",
                 variable->getMinimum(), variable->getMaximum()));
-        for (int i = 0; i < variable->numberOfTerms(); ++i) {
+        for (std::size_t i = 0; i < variable->numberOfTerms(); ++i) {
             result.push_back(_indent + toString(variable->getTerm(i)));
         }
         return Op::join(result, _separator);
@@ -114,7 +116,7 @@ namespace fl {
         result.push_back(_indent + "enabled: " + (inputVariable->isEnabled() ? "true" : "false"));
         result.push_back(_indent + "range: " + Op::join(2, " ",
                 inputVariable->getMinimum(), inputVariable->getMaximum()));
-        for (int i = 0; i < inputVariable->numberOfTerms(); ++i) {
+        for (std::size_t i = 0; i < inputVariable->numberOfTerms(); ++i) {
             result.push_back(_indent + toString(inputVariable->getTerm(i)));
         }
         return Op::join(result, _separator);
@@ -135,7 +137,7 @@ namespace fl {
                 (outputVariable->isLockedPreviousOutputValue() ? "true" : "false"));
         result.push_back(_indent + "lock-range: " +
                 (outputVariable->isLockedOutputValueInRange() ? "true" : "false"));
-        for (int i = 0; i < outputVariable->numberOfTerms(); ++i) {
+        for (std::size_t i = 0; i < outputVariable->numberOfTerms(); ++i) {
             result.push_back(_indent + toString(outputVariable->getTerm(i)));
         }
         return Op::join(result, _separator);
@@ -149,7 +151,7 @@ namespace fl {
         result.push_back(_indent + "conjunction: " + toString(ruleBlock->getConjunction()));
         result.push_back(_indent + "disjunction: " + toString(ruleBlock->getDisjunction()));
         result.push_back(_indent + "activation: " + toString(ruleBlock->getActivation()));
-        for (int i = 0; i < ruleBlock->numberOfRules(); ++i) {
+        for (std::size_t i = 0; i < ruleBlock->numberOfRules(); ++i) {
             result.push_back(_indent + toString(ruleBlock->getRule(i)));
         }
         return Op::join(result, _separator);

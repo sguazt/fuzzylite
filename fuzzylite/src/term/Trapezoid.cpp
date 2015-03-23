@@ -24,6 +24,8 @@
 
 #include "fl/term/Trapezoid.h"
 
+#include <cstddef>
+
 namespace fl {
 
     Trapezoid::Trapezoid(const std::string& name,

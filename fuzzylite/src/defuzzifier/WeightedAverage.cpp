@@ -30,6 +30,7 @@
 #include "fl/norm/SNorm.h"
 #include "fl/norm/TNorm.h"
 
+#include <cstddef>
 #include <map>
 
 namespace fl {
@@ -66,7 +67,7 @@ namespace fl {
 
         if (not fuzzyOutput->getAccumulation()) {
             Type type = _type;
-            for (int i = 0; i < fuzzyOutput->numberOfTerms(); ++i) {
+            for (std::size_t i = 0; i < fuzzyOutput->numberOfTerms(); ++i) {
                 Activated* activated = fuzzyOutput->getTerm(i);
                 scalar w = activated->getDegree();
 
@@ -83,7 +84,7 @@ namespace fl {
         } else {
             typedef std::map<const Term*, std::vector<Activated*> > TermGroup;
             TermGroup groups;
-            for (int i = 0; i < fuzzyOutput->numberOfTerms(); ++i) {
+            for (std::size_t i = 0; i < fuzzyOutput->numberOfTerms(); ++i) {
                 Activated* value = fuzzyOutput->getTerm(i);
                 const Term* key = value->getTerm();
                 groups[key].push_back(value);

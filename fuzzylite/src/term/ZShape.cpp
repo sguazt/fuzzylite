@@ -24,6 +24,8 @@
 
 #include "fl/term/ZShape.h"
 
+#include <cstddef>
+
 namespace fl {
 
     ZShape::ZShape(const std::string& name, scalar start, scalar end, scalar height)

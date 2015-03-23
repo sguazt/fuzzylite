@@ -24,6 +24,8 @@
 
 #include "fl/term/SigmoidProduct.h"
 
+#include <cstddef>
+
 namespace fl {
 
     SigmoidProduct::SigmoidProduct(const std::string& name,

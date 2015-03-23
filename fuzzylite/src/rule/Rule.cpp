@@ -31,6 +31,7 @@
 #include "fl/rule/Antecedent.h"
 #include "fl/rule/Consequent.h"
 
+#include <cstddef>
 #include <sstream>
 #include <vector>
 
@@ -122,7 +123,7 @@ namespace fl {
         return (it != this->_hedges.end());
     }
 
-    int Rule::numberOfHedges() const {
+    std::size_t Rule::numberOfHedges() const {
         return this->_hedges.size();
     }
 

@@ -24,6 +24,8 @@
 
 #include "fl/term/Spike.h"
 
+#include <cstddef>
+
 namespace fl {
 
     Spike::Spike(const std::string& name, scalar center, scalar width, scalar height)

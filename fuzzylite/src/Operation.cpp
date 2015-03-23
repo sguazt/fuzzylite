@@ -32,6 +32,7 @@
 #include <algorithm>
 #include <iomanip>
 #include <cstdarg>
+#include <cstddef>
 #include <cctype>
 
 namespace fl {
@@ -391,6 +392,7 @@ namespace fl {
         } else ss << x;
         return ss.str();
     }
+
     template FL_API std::string Operation::str(int x, int precision);
     template FL_API std::string Operation::str(scalar x, int precision);
 

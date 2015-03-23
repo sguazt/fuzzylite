@@ -32,6 +32,7 @@
 #include "fl/term/Term.h"
 
 #include <algorithm>
+#include <cstddef>
 #include <map>
 #include <sstream>
 
@@ -196,11 +197,11 @@ namespace fl {
         this->_terms.push_back(term);
     }
 
-    void Variable::insertTerm(Term* term, int index) {
+    void Variable::insertTerm(Term* term, std::size_t index) {
         this->_terms.insert(this->_terms.begin() + index, term);
     }
 
-    Term* Variable::getTerm(int index) const {
+    Term* Variable::getTerm(std::size_t index) const {
         return this->_terms.at(index);
     }
 
@@ -218,13 +219,13 @@ namespace fl {
         return getTerm(name) != fl::null;
     }
 
-    Term* Variable::removeTerm(int index) {
+    Term* Variable::removeTerm(std::size_t index) {
         Term* result = this->_terms.at(index);
         this->_terms.erase(this->_terms.begin() + index);
         return result;
     }
 
-    int Variable::numberOfTerms() const {
+    std::size_t Variable::numberOfTerms() const {
         return this->_terms.size();
     }
 

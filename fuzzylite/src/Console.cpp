@@ -28,8 +28,9 @@
 
 #include <algorithm>
 #include <cctype>
+#include <cstddef>
 #include <fstream>
-#include <stdlib.h>
+#include <cstdlib>
 #include <utility>
 #include <vector>
 

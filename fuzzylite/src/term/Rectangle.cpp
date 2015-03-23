@@ -24,6 +24,8 @@
 
 #include "fl/term/Rectangle.h"
 
+#include <cstddef>
+
 namespace fl {
 
     Rectangle::Rectangle(const std::string& name, scalar start, scalar end, scalar height)

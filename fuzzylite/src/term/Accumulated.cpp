@@ -29,6 +29,8 @@
 #include "fl/norm/s/Maximum.h"
 #include "fl/term/Activated.h"
 
+#include <cstddef>
+
 
 namespace fl {
 
@@ -175,7 +177,7 @@ namespace fl {
         this->_terms.push_back(term);
     }
 
-    Activated* Accumulated::removeTerm(int index) {
+    Activated* Accumulated::removeTerm(std::size_t index) {
         Activated* term = this->_terms.at(index);
         this->_terms.erase(this->_terms.begin() + index);
         return term;
@@ -188,7 +190,7 @@ namespace fl {
         _terms.clear();
     }
 
-    Activated* Accumulated::getTerm(int index) const {
+    Activated* Accumulated::getTerm(std::size_t index) const {
         return this->_terms.at(index);
     }
 
@@ -200,7 +202,7 @@ namespace fl {
         return this->_terms;
     }
 
-    int Accumulated::numberOfTerms() const {
+    std::size_t Accumulated::numberOfTerms() const {
         return _terms.size();
     }
 

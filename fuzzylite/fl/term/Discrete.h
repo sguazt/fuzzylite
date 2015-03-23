@@ -27,6 +27,7 @@
 
 #include "fl/term/Term.h"
 
+#include <cstddef>
 #include <vector>
 #include <utility>
 
@@ -58,8 +59,8 @@ namespace fl {
         virtual void setXY(const std::vector<Pair>& pairs);
         virtual const std::vector<Pair>& xy() const;
         virtual std::vector<Pair>& xy();
-        virtual const Pair& xy(int index) const;
-        virtual Pair& xy(int index);
+        virtual const Pair& xy(std::size_t index) const;
+        virtual Pair& xy(std::size_t index);
 
 
         static std::vector<scalar> toVector(const std::vector<Pair>& xy);

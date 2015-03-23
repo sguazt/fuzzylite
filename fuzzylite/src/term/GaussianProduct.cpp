@@ -24,6 +24,8 @@
 
 #include "fl/term/GaussianProduct.h"
 
+#include <cstddef>
+
 namespace fl {
 
     GaussianProduct::GaussianProduct(const std::string& name,

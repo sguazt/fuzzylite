@@ -24,6 +24,8 @@
 
 #include "fl/term/Ramp.h"
 
+#include <cstddef>
+
 namespace fl {
 
     Ramp::Ramp(const std::string& name, scalar start, scalar end, scalar height)

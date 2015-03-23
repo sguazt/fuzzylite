@@ -30,6 +30,8 @@
 #include "fl/term/Accumulated.h"
 #include "fl/term/Activated.h"
 
+#include <cstddef>
+
 namespace fl {
 
     OutputVariable::OutputVariable(const std::string& name,

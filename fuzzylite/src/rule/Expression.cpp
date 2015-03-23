@@ -29,6 +29,8 @@
 #include "fl/rule/Rule.h"
 #include "fl/variable/Variable.h"
 
+#include <cstddef>
+
 namespace fl {
 
     Expression::Expression() {

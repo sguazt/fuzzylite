@@ -24,6 +24,8 @@
 
 #include "fl/term/SShape.h"
 
+#include <cstddef>
+
 namespace fl {
 
     SShape::SShape(const std::string& name, scalar start, scalar end, scalar height)

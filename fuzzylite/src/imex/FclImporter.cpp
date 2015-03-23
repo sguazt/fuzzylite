@@ -26,6 +26,7 @@
 
 #include "fl/Headers.h"
 
+#include <cstddef>
 #include <iostream>
 #include <sstream>
 
@@ -57,7 +58,7 @@ namespace fl {
         std::istringstream fclReader(fcl);
         std::string line;
 
-        int lineNumber = 0;
+        std::size_t lineNumber = 0;
         while (std::getline(fclReader, line)) {
             ++lineNumber;
             std::vector<std::string> comments;
@@ -535,7 +536,7 @@ namespace fl {
             throw fl::Exception(ex.str(), FL_AT);
         }
         scalar minimum, maximum;
-        int index;
+        std::size_t index;
         try {
             minimum = Op::toScalar(token.at(index = 0));
             maximum = Op::toScalar(token.at(index = 1));

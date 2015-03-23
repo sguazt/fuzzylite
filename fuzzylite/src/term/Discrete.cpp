@@ -25,6 +25,7 @@
 #include "fl/term/Discrete.h"
 
 #include <cstdarg>
+#include <cstddef>
 
 namespace fl {
 
@@ -128,7 +129,7 @@ namespace fl {
             double x1, double y1, ...); // throw (fl::Exception);
     //double, not scalar because variadic promotes floats to double
     template FL_API Discrete* Discrete::create(const std::string& name, int argc,
-            int x1, int y1, ...); // throw (fl::Exception);
+            std::size_t x1, std::size_t y1, ...); // throw (fl::Exception);
 
     void Discrete::setXY(const std::vector<Pair>& pairs) {
         this->_xy = pairs;
@@ -142,11 +143,11 @@ namespace fl {
         return this->_xy;
     }
 
-    const Discrete::Pair& Discrete::xy(int index) const {
+    const Discrete::Pair& Discrete::xy(std::size_t index) const {
         return this->_xy.at(index);
     }
 
-    Discrete::Pair& Discrete::xy(int index) {
+    Discrete::Pair& Discrete::xy(std::size_t index) {
         return this->_xy.at(index);
     }
 

@@ -24,6 +24,8 @@
 
 #include "fl/term/Concave.h"
 
+#include <cstddef>
+
 namespace fl {
 
     Concave::Concave(const std::string& name, scalar inflection, scalar end, scalar height)
