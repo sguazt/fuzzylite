@@ -313,9 +313,9 @@ namespace fl {
     }
 
     std::string FisImporter::translateProposition(scalar code, Variable* variable) const {
-        int intPart = (int) std::floor(std::fabs(code)) - 1;
+        long intPart = (long) std::floor(std::fabs(code)) - 1;
         scalar fracPart = std::fmod(std::fabs(code), 1.0);
-        if (intPart >= static_cast<int>(variable->numberOfTerms())) {
+        if (intPart > 0 && static_cast<std::size_t>(intPart) >= variable->numberOfTerms()) {
             std::ostringstream ex;
             ex << "[syntax error] the code <" << code << "> refers to a term "
                     "out of range from variable <" << variable->getName() << ">";
